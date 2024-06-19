@@ -1,0 +1,16 @@
+{
+  "name": "api_back_phones",
+  "version": "1.0.0",
+  "description": "Serveur d'API pour téléphone",
+  "main": "server.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon ./server.js"
+  },
+  "author": "bopi1829",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.19.2"
+  }
+}

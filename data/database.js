@@ -1,12 +1,13 @@
 const phones = [
   {
     id: 1,
-    marque: 'apple',
+    marque: 'Apple',
     model: 'iPhone 13',
-    description: 'téléphone avec vitre renforcée',
+    description: 'Téléphone tactile avec vitre renforcée',
     annee: '2021',
     service: true,
-    couleur: '2018BA',
+    couleur: 'Midnight',
     capacité: '256 Go',
+    taille: '6"',
   },
 ];
