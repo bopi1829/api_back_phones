@@ -1,13 +1,7 @@
 import express from 'express';
 import bodyParser from 'body-parser';
-import db from './data/database.js';
-import {
-  createPhone,
-  deletePhoneById,
-  findPhoneById,
-  updatePhoneById,
-  validate,
-} from './buisness/PhonesService.js';
+import { findPhoneById, deletePhoneById, updatePhoneById, createPhone, validate } from './buisness/PhonesService.js';
+import db from './data/database.js'
 
 const app = express();
 
@@ -16,12 +10,6 @@ app.use(bodyParser.urlencoded({ extended: false }));
 
 // parse apllication /json
 app.use(bodyParser.json());
-
-const port = 3000;
-
-app.get('/', (req, res) => {
-  res.send('Hello World !');
-});
 
 // CREER CRUD API
 // 1- GET /api/v1/phones
@@ -40,12 +28,12 @@ app.get('/', (req, res) => {
 
 // GET ALL
 app.get('/api/v1/phones', (req, res) => {
-  res.status(200).send({
-    success: true,
-    message: 'phones récupéré avec succès !',
-    phones: db,
-  });
-});
+    res.status(200).send({
+      success: true,
+      message: 'phones récupéré avec succès !',
+      phones: db,
+    });
+})
 
 /**
  * 2- CREATE Créer un élément
@@ -74,10 +62,9 @@ app.post('/api/v1/phones', (req, res) => {
   // Retour code 201
   res.status(201).send({
     success: true,
-    message: 'phones ajouté avec succès !',
+    message: 'phone ajouté avec succès !',
     phones: phoneToSave,
-  });
-});
+  })})
 
 /**
  * 3- GETBYID RECUPERER les données d'un élément selon l'id
@@ -104,7 +91,7 @@ app.get('/api/v1/phones/:id', (req, res) => {
       phone,
     });
   }
-});
+})
 
 /**
  * 4- DELETE SUPPRIMER les données d'un élément selon l'id
@@ -130,7 +117,7 @@ app.delete('/api/v1/phones/:id', (req, res) => {
       message: 'phone not found !',
     });
   }
-});
+})
 
 /**
  * 5- PUT METTRE A JOUR les données d'un élément selon l'id
@@ -158,8 +145,9 @@ app.put('/api/v1/phones/:id', (req, res) => {
       message: 'phone not found !',
     });
   }
-});
+})
 
+const port = 3000;
 app.listen(port, () => {
   console.log(`Serveur demarré sur le port ${port}`);
   console.log(`http://localhost:${port}`);

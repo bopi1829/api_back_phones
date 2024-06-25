@@ -6,20 +6,17 @@ export const insert = function(phone) {
   return phone
 }
 
-export const updateById = function(phone) {
+export const updateById = function(phoneToUpdate) {
   let phoneFound;
   let itemIndex;
 
   db.map((phone, index) => {
-    if (phone.id === id) {
+    if (phone.id === phoneToUpdate.id) {
       phoneFound = phone;
       itemIndex = index;
     }
   });
   if (!phoneFound) {
-    return false;
-  }
-  if (!validate(phoneToUpdate).success) {
     return false;
   }
   const updatedPhone = {
@@ -34,17 +31,24 @@ export const updateById = function(phone) {
     taille: phoneToUpdate.taille || phoneFound.taille,
   };
   db.splice(itemIndex, 1, updatedPhone);
+  return updatedPhone
 }
 
-export const delById = function(phone) {
-  
+export const deleteById = function(id) {
+  const phoneFound = db.find((phone, index) => {
+    if (phone.id === id) {
+      db.splice(index, 1);
+      return true;
+    }
+  });
+  return phoneFound;
 }
 
-export const getAll = function(phone) {
-  return db
+export const getAll = function() {
+  return db;
 }
 
-export const getById = function(phone) {
+export const getById = function(id) {
   const phoneFound = db.find((phone) => {
     if (phone.id === id) {
       return phone;
